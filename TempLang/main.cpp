@@ -2,6 +2,8 @@
 #include "resource.h"
 #include <hash_map>
 
+#include "../Hook/Hook.h"
+
 INT_PTR CALLBACK DialogProc(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
     INT_PTR ret = TRUE;
@@ -29,20 +31,27 @@ LRESULT CALLBACK keyboardHook(int nCode, WPARAM wParam, LPARAM lParam)
 {
     static HKL originalMapping;
     static DWORD threadId=0;
+    static HWND focusWindow;
 
     PKBDLLHOOKSTRUCT params = (PKBDLLHOOKSTRUCT)lParam;
     if(nCode>=0 && params->vkCode == VK_CAPITAL) {
         if( !(params->flags & LLKHF_UP) ) {
             if( threadId==0 ) {
                 GUITHREADINFO guiThreadInfo;
+                guiThreadInfo.cbSize = sizeof(guiThreadInfo);
 
+                OutputDebugString(_T("Point 1\n"));
                 GetGUIThreadInfo( 0, &guiThreadInfo );
-                HWND focusWindow = guiThreadInfo.hwndFocus;
+                OutputDebugString(_T("Point 2\n"));
+                focusWindow = guiThreadInfo.hwndFocus;
                 threadId = GetWindowThreadProcessId( focusWindow, NULL );
                 originalMapping = GetKeyboardLayout( threadId );
 
-                ActivateKeyboardLayout(
+                switchMapping( threadId, focusWindow, languageMap[originalMapping] );
             }
+        } else if( threadId!=0 ) {
+            switchMapping( threadId, focusWindow, originalMapping );
+            threadId = 0;
         }
         return 1;
     }
