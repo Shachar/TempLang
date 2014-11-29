@@ -128,7 +128,6 @@ LRESULT CALLBACK KeyboardProc( int code, WPARAM wParam, LPARAM lParam )
 void switchMapping(DWORD threadId, HWND window, HKL keyboard)
 {
     sharedStruct->hLayout = keyboard;
-    _sntprintf_s(sharedStruct->strLayout, 9, _T("%08x"), (unsigned int)keyboard);
     sharedStruct->dstWindow = window;
     sharedStruct->HOOKHANDLE = SetWindowsHookEx(WH_CALLWNDPROC, KeyboardProc, hMod, threadId);
     if(sharedStruct->HOOKHANDLE == NULL) {

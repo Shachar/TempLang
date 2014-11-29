@@ -729,6 +729,16 @@
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath="..\Authors.txt"
+			DeploymentContent="true"
+			>
+		</File>
+		<File
+			RelativePath="..\Copying.txt"
+			DeploymentContent="true"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>
