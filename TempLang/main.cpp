@@ -40,9 +40,7 @@ LRESULT CALLBACK keyboardHook(int nCode, WPARAM wParam, LPARAM lParam)
                 GUITHREADINFO guiThreadInfo;
                 guiThreadInfo.cbSize = sizeof(guiThreadInfo);
 
-                OutputDebugString(_T("Point 1\n"));
                 GetGUIThreadInfo( 0, &guiThreadInfo );
-                OutputDebugString(_T("Point 2\n"));
                 focusWindow = guiThreadInfo.hwndFocus;
                 threadId = GetWindowThreadProcessId( focusWindow, NULL );
                 originalMapping = GetKeyboardLayout( threadId );
@@ -61,7 +59,7 @@ LRESULT CALLBACK keyboardHook(int nCode, WPARAM wParam, LPARAM lParam)
 
 void installHook()
 {
-    // GetKeyboardLayout();
+    initSharedMem();
     HKL keyboardsList[10];
     UINT numKeyboards = GetKeyboardLayoutList( 10, keyboardsList );
 

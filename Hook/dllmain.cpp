@@ -6,13 +6,31 @@
 
 #include "Hook.h"
 
+void ODS(const TCHAR *format, ...)
+{
+    TCHAR outputMessage[250];
+
+    va_list arguments;
+    va_start(arguments, format);
+
+    _vsntprintf_s(outputMessage, 250, format, arguments);
+    OutputDebugString(outputMessage);
+}
+
 struct SharedMemStruct {
     SharedMemStruct() {
         memset(this, 0, sizeof(*this));
     }
 
+    // We don't really need these: CallNextHookEx ignores the handle argument and the handlers don't unhook themselves.
+    // Still, just for completeness, we leave those in. 
     HHOOK hookHandle32;
     HHOOK hookHandle64;
+#ifdef  _WIN64
+#define HOOKHANDLE hookHandle64
+#else
+#define HOOKHANDLE hookHandle32
+#endif
 
     DWORD dstThreadId;
     HWND dstWindow;
@@ -23,7 +41,7 @@ HANDLE fileMappingHandle;
 SharedMemStruct *sharedStruct;
 HINSTANCE hMod;
 
-BOOL initProcess()
+BOOL loadSharedMem()
 {
     SetLastError(ERROR_SUCCESS);
     fileMappingHandle = CreateFileMapping(INVALID_HANDLE_VALUE, NULL, PAGE_READWRITE, 0, sizeof(SharedMemStruct), _T("Local\\Shachar_Shemesh_TempLang"));
@@ -37,14 +55,15 @@ BOOL initProcess()
         return false;
     }
 
-    if( created ) {
-        new(sharedStruct) SharedMemStruct();
-    }
-
     return true;
 }
 
-void shutdownProcess()
+void initSharedMem()
+{
+    new(sharedStruct) SharedMemStruct();
+}
+
+void unloadSharedMem()
 {
     UnmapViewOfFile(sharedStruct);
     CloseHandle(fileMappingHandle);
@@ -59,13 +78,13 @@ BOOL APIENTRY DllMain( HMODULE hModule,
 	{
 	case DLL_PROCESS_ATTACH:
         hMod = hModule;
-        return initProcess();
+        loadSharedMem();
         break;
 	case DLL_THREAD_ATTACH:
 	case DLL_THREAD_DETACH:
         break;
 	case DLL_PROCESS_DETACH:
-        shutdownProcess();
+        unloadSharedMem();
 		break;
 	}
 	return TRUE;
@@ -73,12 +92,9 @@ BOOL APIENTRY DllMain( HMODULE hModule,
 
 LRESULT CALLBACK KeyboardProc( int code, WPARAM wParam, LPARAM lParam )
 {
-    OutputDebugString(_T("Point 4\n"));
     if(code>=0 && sharedStruct->hLayout!=NULL) {
         CWPSTRUCT *params = (PCWPSTRUCT)lParam;
-        OutputDebugString(_T("Point 3\n"));
         if( params->hwnd == sharedStruct->dstWindow && params->message == WM_KEYDOWN && params->wParam == VK_CAPITAL ) {
-            OutputDebugString(_T("Activating layout\n"));
             ActivateKeyboardLayout(sharedStruct->hLayout, KLF_SETFORPROCESS);
 
             sharedStruct->hLayout = NULL;
@@ -87,22 +103,23 @@ LRESULT CALLBACK KeyboardProc( int code, WPARAM wParam, LPARAM lParam )
         }
     }
 
-    return CallNextHookEx(sharedStruct->hookHandle32, code, wParam, lParam);
+    return CallNextHookEx(sharedStruct->HOOKHANDLE, code, wParam, lParam);
 }
 
 void switchMapping(DWORD threadId, HWND window, HKL keyboard)
 {
     sharedStruct->hLayout = keyboard;
+    _sntprintf_s(sharedStruct->strLayout, 9, _T("%08x"), (unsigned int)keyboard);
     sharedStruct->dstWindow = window;
-    sharedStruct->hookHandle32 = SetWindowsHookEx(WH_CALLWNDPROC, KeyboardProc, hMod, 0);
-    if(sharedStruct->hookHandle32 == NULL) {
+    sharedStruct->HOOKHANDLE = SetWindowsHookEx(WH_CALLWNDPROC, KeyboardProc, hMod, threadId);
+    if(sharedStruct->HOOKHANDLE == NULL) {
         DWORD error = GetLastError();
-        OutputDebugString(_T("Hook not installed"));
+        ODS(_T("Hook not installed error: %ld\n"), error);
     }
     SendMessage(window, WM_KEYDOWN, VK_CAPITAL, 0);
-    if(!UnhookWindowsHookEx(sharedStruct->hookHandle32)) {
+    if(!UnhookWindowsHookEx(sharedStruct->HOOKHANDLE)) {
         DWORD error = GetLastError();
-        OutputDebugString(_T("Hook not removed"));
+        ODS(_T("Hook %p not removed error: %ld\n"), sharedStruct->HOOKHANDLE, error);
     }
 
     if( sharedStruct->hLayout )

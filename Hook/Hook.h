@@ -11,14 +11,4 @@
 #endif
 
 HOOK_API void switchMapping( DWORD threadId, HWND hWindow, HKL mapping );
-
-// This class is exported from the Hook.dll
-class HOOK_API CHook {
-public:
-	CHook(void);
-	// TODO: add your methods here.
-};
-
-extern HOOK_API int nHook;
-
-HOOK_API int fnHook(void);
+HOOK_API void initSharedMem();
