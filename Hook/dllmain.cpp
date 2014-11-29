@@ -20,6 +20,7 @@
 // dllmain.cpp : Defines the entry point for the DLL application.
 #include <windows.h>
 #include <tchar.h>
+#include <assert.h>
 
 #include <new>
 
@@ -36,34 +37,40 @@ void ODS(const TCHAR *format, ...)
     OutputDebugString(outputMessage);
 }
 
+#define ALIGN64(type, name) union { type handle; UINT64 pad; } name;
 struct SharedMemStruct {
     SharedMemStruct() {
         memset(this, 0, sizeof(*this));
+        size = sizeof(SharedMemStruct);
     }
 
+    unsigned int size;
     // We don't really need these: CallNextHookEx ignores the handle argument and the handlers don't unhook themselves.
-    // Still, just for completeness, we leave those in. 
-    HHOOK hookHandle32;
-    HHOOK hookHandle64;
+    // Still, just for completeness, we leave those in.
+    ALIGN64(HHOOK, hookHandle32);
+    ALIGN64(HHOOK, hookHandle64);
 #ifdef  _WIN64
-#define HOOKHANDLE hookHandle64
+#define HOOKHANDLE hookHandle64.handle
 #else
-#define HOOKHANDLE hookHandle32
+#define HOOKHANDLE hookHandle32.handle
 #endif
 
+    ALIGN64(HWND, dstWindow);
+    ALIGN64(HKL, hLayout);
     DWORD dstThreadId;
-    HWND dstWindow;
-    HKL hLayout;
+    bool running64;
+    bool exit;
 };
 
 HANDLE fileMappingHandle;
 SharedMemStruct *sharedStruct;
 HINSTANCE hMod;
+HANDLE eventEnter, eventExit;
 
 BOOL loadSharedMem()
 {
     SetLastError(ERROR_SUCCESS);
-    fileMappingHandle = CreateFileMapping(INVALID_HANDLE_VALUE, NULL, PAGE_READWRITE, 0, sizeof(SharedMemStruct), _T("Local\\Shachar_Shemesh_TempLang"));
+    fileMappingHandle = CreateFileMapping(INVALID_HANDLE_VALUE, NULL, PAGE_READWRITE, 0, sizeof(SharedMemStruct), _T("Local\\Shachar_Shemesh_TempLang_Memory"));
     if(fileMappingHandle==NULL) {
         return false;
     }
@@ -77,15 +84,30 @@ BOOL loadSharedMem()
     return true;
 }
 
-void initSharedMem()
-{
-    new(sharedStruct) SharedMemStruct();
-}
-
 void unloadSharedMem()
 {
     UnmapViewOfFile(sharedStruct);
     CloseHandle(fileMappingHandle);
+}
+
+void createEvents()
+{
+    eventEnter = CreateEvent(NULL, false, false, _T("Local\\Shachar_Shemesh_TempLang_Event_Enter"));
+    if(eventEnter == NULL) {
+        ODS(_T("Failed to create enter event: %ld"), GetLastError());
+        return;
+    }
+    eventExit = CreateEvent(NULL, false, false, _T("Local\\Shachar_Shemesh_TempLang_Event_Exit"));
+    if(eventExit == NULL) {
+        ODS(_T("Failed to create exit event: %ld"), GetLastError());
+        return;
+    }
+}
+
+void destroyEvents()
+{
+    CloseHandle(eventEnter);
+    CloseHandle(eventExit);
 }
 
 BOOL APIENTRY DllMain( HMODULE hModule,
@@ -111,12 +133,12 @@ BOOL APIENTRY DllMain( HMODULE hModule,
 
 LRESULT CALLBACK KeyboardProc( int code, WPARAM wParam, LPARAM lParam )
 {
-    if(code>=0 && sharedStruct->hLayout!=NULL) {
+    if(code>=0 && sharedStruct->hLayout.handle!=NULL) {
         CWPSTRUCT *params = (PCWPSTRUCT)lParam;
-        if( params->hwnd == sharedStruct->dstWindow && params->message == WM_KEYDOWN && params->wParam == VK_CAPITAL ) {
-            ActivateKeyboardLayout(sharedStruct->hLayout, KLF_SETFORPROCESS);
+        if( params->hwnd == sharedStruct->dstWindow.handle && params->message == WM_KEYDOWN && params->wParam == VK_CAPITAL ) {
+            ActivateKeyboardLayout(sharedStruct->hLayout.handle, KLF_SETFORPROCESS);
 
-            sharedStruct->hLayout = NULL;
+            sharedStruct->hLayout.handle = NULL;
 
             return 1; // Do not show the message to anyone else
         }
@@ -125,10 +147,11 @@ LRESULT CALLBACK KeyboardProc( int code, WPARAM wParam, LPARAM lParam )
     return CallNextHookEx(sharedStruct->HOOKHANDLE, code, wParam, lParam);
 }
 
+#ifndef _WIN64
 void switchMapping(DWORD threadId, HWND window, HKL keyboard)
 {
-    sharedStruct->hLayout = keyboard;
-    sharedStruct->dstWindow = window;
+    sharedStruct->hLayout.handle = keyboard;
+    sharedStruct->dstWindow.handle = window;
     sharedStruct->HOOKHANDLE = SetWindowsHookEx(WH_CALLWNDPROC, KeyboardProc, hMod, threadId);
     if(sharedStruct->HOOKHANDLE == NULL) {
         DWORD error = GetLastError();
@@ -140,8 +163,46 @@ void switchMapping(DWORD threadId, HWND window, HKL keyboard)
         ODS(_T("Hook %p not removed error: %ld\n"), sharedStruct->HOOKHANDLE, error);
     }
 
-    if( sharedStruct->hLayout )
+    if( sharedStruct->hLayout.handle )
         OutputDebugString(_T("After: no\n"));
     else
         OutputDebugString(_T("After: yes\n"));
 }
+
+void initSharedMem()
+{
+    new(sharedStruct) SharedMemStruct();
+}
+#else
+int waitLoop()
+{
+    assert(sharedStruct->size == sizeof(*sharedStruct));
+    sharedStruct->running64 = true;
+
+    WaitForSingleObject(eventEnter, INFINITE);
+    while(! sharedStruct->exit) {
+        assert(sharedStruct->dstThreadId != 0);
+        assert(sharedStruct->dstWindow.handle);
+
+        sharedStruct->HOOKHANDLE = SetWindowsHookEx(WH_CALLWNDPROC, KeyboardProc, hMod, sharedStruct->dstThreadId);
+        if(sharedStruct->HOOKHANDLE == NULL) {
+            DWORD error = GetLastError();
+            ODS(_T("Hook not installed error: %ld\n"), error);
+        }
+
+        // Signal the 32 bit we are ready
+        SetEvent(eventEnter);
+
+        // Wait until the handler is done
+        WaitForSingleObject(eventExit, INFINITE);
+        if(!UnhookWindowsHookEx(sharedStruct->HOOKHANDLE)) {
+            DWORD error = GetLastError();
+            ODS(_T("Hook %p not removed error: %ld\n"), sharedStruct->HOOKHANDLE, error);
+        }
+
+        WaitForSingleObject(eventEnter, INFINITE);
+    }
+
+    return 0;
+}
+#endif

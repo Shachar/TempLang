@@ -23,6 +23,9 @@
 
 #include "../Hook/Hook.h"
 
+#define RUN_IDENTIFIER_ARG "Shachar Shemesh's TempLang: temporary keyboard switching"
+
+#ifndef _WIN64
 INT_PTR CALLBACK DialogProc(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
     INT_PTR ret = TRUE;
@@ -76,6 +79,41 @@ LRESULT CALLBACK keyboardHook(int nCode, WPARAM wParam, LPARAM lParam)
     return CallNextHookEx(hookHandle, nCode, wParam, lParam);
 }
 
+#define HELPER_EXE_NAME "TempLang Helper.exe"
+void run64Helper()
+{
+    TCHAR path[4096];
+    DWORD pathlen = GetModuleFileName(NULL, path, 4096);
+    if( pathlen==0 ) {
+        OutputDebugString(_T("Failed to get current module's path\n"));
+        exit(1);
+    } else {
+        OutputDebugString(path);
+        OutputDebugString(_T("\n"));
+    }
+
+    // Locate last directory separator
+    TCHAR *dirend = _tcsrchr(path, _T('\\'));
+    dirend++;
+    memcpy(dirend, _T(HELPER_EXE_NAME), sizeof(_T(HELPER_EXE_NAME)));
+
+    STARTUPINFO startInfo;
+    memset( &startInfo, 0, sizeof(startInfo));
+    startInfo.cb = sizeof(startInfo);
+
+    PROCESS_INFORMATION procInfo;
+    if( !CreateProcess(path, _T(RUN_IDENTIFIER_ARG), NULL, NULL, false, 0, NULL,
+        NULL, &startInfo, &procInfo)) {
+            DWORD error = GetLastError();
+            OutputDebugString(_T("Helper process creation failed\n"));
+    } else {
+        // We don't wait for it
+        CloseHandle(procInfo.hProcess);
+        CloseHandle(procInfo.hThread);
+        OutputDebugString(_T("Started helper process\n"));
+    }
+}
+
 void installHook()
 {
     initSharedMem();
@@ -85,6 +123,8 @@ void installHook()
     for(UINT i=0; i<numKeyboards; ++i) {
         languageMap[keyboardsList[i]] = keyboardsList[(i+1)%numKeyboards];
     }
+
+    run64Helper();
 
     hookHandle = SetWindowsHookEx(WH_KEYBOARD_LL, keyboardHook, NULL, 0);
     if(hookHandle == NULL) {
@@ -107,3 +147,17 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	return 0;
 }
+#else
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine,int nCmdShow)
+{
+    if( _tcscmp(GetCommandLine(), _T(RUN_IDENTIFIER_ARG))==0 )
+        // Not much here for 64 bit
+        return waitLoop();
+
+    OutputDebugString(GetCommandLine());
+    // We were not run by our 32bit counterpart
+    MessageBox(NULL, _T("This executable is a part of TempLang.\nPlease do not run it directly."),
+        _T("Error"), MB_OK|MB_ICONSTOP|MB_APPLMODAL);
+    return 1;
+}
+#endif
