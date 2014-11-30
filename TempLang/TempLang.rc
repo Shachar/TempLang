@@ -32,9 +32,8 @@ EXSTYLE WS_EX_WINDOWEDGE
 CAPTION "TempLang - Temporary Language Switch"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
-    PUSHBUTTON      "Shutdown",IDCANCEL,259,164,50,14
-    LTEXT           "Welcome to the ""I couldn't be botherred to create a real GUI"" GUI. I hope you enjoy it.",IDC_STATIC,7,68,302,99
-    EDITTEXT        IDC_EDIT1,18,23,254,27,ES_AUTOHSCROLL
+    PUSHBUTTON      "Close",IDCANCEL,259,164,50,14
+    LTEXT           "Welcome to the ""I couldn't be botherred to create a real GUI"" GUI. I hope you enjoy it.",IDC_STATIC,7,7,302,99
 END
 
 
