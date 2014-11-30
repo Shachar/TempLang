@@ -10,10 +10,11 @@
 #define HOOK_API __declspec(dllimport)
 #endif
 
-HOOK_API void initSharedMem();
-
 #ifndef _WIN64
 HOOK_API void switchMapping( DWORD threadId, HWND hWindow, HKL mapping );
+
+HOOK_API void initSharedMem();
+HOOK_API void hookShutdown();
 #else
 HOOK_API int waitLoop();
 #endif

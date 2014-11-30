@@ -137,6 +137,8 @@ void installHook()
 void removeHook()
 {
     UnhookWindowsHookEx(hookHandle);
+    hookShutdown();
+
 }
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine,int nCmdShow)

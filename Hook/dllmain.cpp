@@ -65,7 +65,7 @@ struct SharedMemStruct {
 HANDLE fileMappingHandle;
 SharedMemStruct *sharedStruct;
 HINSTANCE hMod;
-HANDLE eventEnter, eventExit;
+HANDLE eventEnter, eventExit, eventHookInstalled;
 
 BOOL loadSharedMem()
 {
@@ -90,11 +90,16 @@ void unloadSharedMem()
     CloseHandle(fileMappingHandle);
 }
 
-void createEvents()
+static void createEvents()
 {
     eventEnter = CreateEvent(NULL, false, false, _T("Local\\Shachar_Shemesh_TempLang_Event_Enter"));
     if(eventEnter == NULL) {
         ODS(_T("Failed to create enter event: %ld"), GetLastError());
+        return;
+    }
+    eventHookInstalled = CreateEvent(NULL, false, false, _T("Local\\Shachar_Shemesh_TempLang_Event_Hook"));
+    if(eventHookInstalled == NULL) {
+        ODS(_T("Failed to create hook installed event: %ld"), GetLastError());
         return;
     }
     eventExit = CreateEvent(NULL, false, false, _T("Local\\Shachar_Shemesh_TempLang_Event_Exit"));
@@ -107,6 +112,7 @@ void createEvents()
 void destroyEvents()
 {
     CloseHandle(eventEnter);
+    CloseHandle(eventHookInstalled);
     CloseHandle(eventExit);
 }
 
@@ -152,12 +158,24 @@ void switchMapping(DWORD threadId, HWND window, HKL keyboard)
 {
     sharedStruct->hLayout.handle = keyboard;
     sharedStruct->dstWindow.handle = window;
+    sharedStruct->dstThreadId = threadId;
+
+    if(sharedStruct->running64) {
+        ODS(_T("Setting enter event threadid = %ld\n"), sharedStruct->dstThreadId);
+        SetEvent(eventEnter); // Mark 64bit to start its own hook installation
+    }
+
     sharedStruct->HOOKHANDLE = SetWindowsHookEx(WH_CALLWNDPROC, KeyboardProc, hMod, threadId);
     if(sharedStruct->HOOKHANDLE == NULL) {
         DWORD error = GetLastError();
         ODS(_T("Hook not installed error: %ld\n"), error);
     }
+    if(sharedStruct->running64)
+        WaitForSingleObject(eventHookInstalled, INFINITE); // Wait for 64bit to tell us its hook is installed
+    ResetEvent(eventEnter);
     SendMessage(window, WM_KEYDOWN, VK_CAPITAL, 0);
+    SetEvent(eventExit); // Tell 64bit to uninstall its hook
+    sharedStruct->dstThreadId = 0;
     if(!UnhookWindowsHookEx(sharedStruct->HOOKHANDLE)) {
         DWORD error = GetLastError();
         ODS(_T("Hook %p not removed error: %ld\n"), sharedStruct->HOOKHANDLE, error);
@@ -172,10 +190,21 @@ void switchMapping(DWORD threadId, HWND window, HKL keyboard)
 void initSharedMem()
 {
     new(sharedStruct) SharedMemStruct();
+    createEvents();
 }
+
+void hookShutdown()
+{
+    // Mark 64bit process to exit
+    sharedStruct->exit = true;
+    SetEvent(eventEnter);
+    destroyEvents();
+}
+
 #else
 int waitLoop()
 {
+    createEvents();
     assert(sharedStruct->size == sizeof(*sharedStruct));
     sharedStruct->running64 = true;
 
@@ -191,7 +220,7 @@ int waitLoop()
         }
 
         // Signal the 32 bit we are ready
-        SetEvent(eventEnter);
+        SetEvent(eventHookInstalled);
 
         // Wait until the handler is done
         WaitForSingleObject(eventExit, INFINITE);
@@ -203,6 +232,7 @@ int waitLoop()
         WaitForSingleObject(eventEnter, INFINITE);
     }
 
+    destroyEvents();
     return 0;
 }
 #endif
