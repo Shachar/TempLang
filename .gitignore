@@ -1,6 +1,8 @@
 Debug
 Release
-*.vcproj.*
-x64
-*.ncb
+*.aps
 *.suo
+*.vcxproj.filters
+x64
+/TempLang.sdf
+/ipch

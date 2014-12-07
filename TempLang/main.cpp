@@ -144,7 +144,11 @@ void removeHook()
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine,int nCmdShow)
 {
     installHook();
-    DialogBox(NULL, MAKEINTRESOURCE(IDD_MAIN), NULL, DialogProc);
+    INT_PTR res = DialogBox(NULL, MAKEINTRESOURCE(IDD_MAIN), NULL, DialogProc);
+	if(res < 0) {
+        DWORD error = GetLastError();
+        OutputDebugString(_T("Failed to create dialog\n"));
+	}
     removeHook();
 
 	return 0;
