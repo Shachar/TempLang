@@ -2,7 +2,7 @@ Debug
 Release
 *.aps
 *.suo
-*.vcxproj.filters
+*.vcxproj.*
 x64
 /TempLang.sdf
 /ipch

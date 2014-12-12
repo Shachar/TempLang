@@ -10,6 +10,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TempLang", "TempLang\TempLa
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Hook", "Hook\Hook.vcxproj", "{F52B292F-4BF6-4004-AA60-1154C1449785}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Installer", "Installer\Installer.vdproj", "{3C1F7CF6-D696-442C-ABA6-1E20EA3E0170}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -42,7 +44,20 @@ Global
 		{F52B292F-4BF6-4004-AA60-1154C1449785}.Release|Mixed Platforms.Build.0 = Release|Win32
 		{F52B292F-4BF6-4004-AA60-1154C1449785}.Release|Win32.ActiveCfg = Release|Win32
 		{F52B292F-4BF6-4004-AA60-1154C1449785}.Release|Win32.Build.0 = Release|Win32
-		{F52B292F-4BF6-4004-AA60-1154C1449785}.Release|x64.ActiveCfg = Release|Win32
+		{F52B292F-4BF6-4004-AA60-1154C1449785}.Release|x64.ActiveCfg = Release|x64
+		{F52B292F-4BF6-4004-AA60-1154C1449785}.Release|x64.Build.0 = Release|x64
+		{3C1F7CF6-D696-442C-ABA6-1E20EA3E0170}.Debug|Mixed Platforms.ActiveCfg = Debug
+		{3C1F7CF6-D696-442C-ABA6-1E20EA3E0170}.Debug|Mixed Platforms.Build.0 = Debug
+		{3C1F7CF6-D696-442C-ABA6-1E20EA3E0170}.Debug|Win32.ActiveCfg = Debug
+		{3C1F7CF6-D696-442C-ABA6-1E20EA3E0170}.Debug|Win32.Build.0 = Debug
+		{3C1F7CF6-D696-442C-ABA6-1E20EA3E0170}.Debug|x64.ActiveCfg = Debug
+		{3C1F7CF6-D696-442C-ABA6-1E20EA3E0170}.Debug|x64.Build.0 = Debug
+		{3C1F7CF6-D696-442C-ABA6-1E20EA3E0170}.Release|Mixed Platforms.ActiveCfg = Release
+		{3C1F7CF6-D696-442C-ABA6-1E20EA3E0170}.Release|Mixed Platforms.Build.0 = Release
+		{3C1F7CF6-D696-442C-ABA6-1E20EA3E0170}.Release|Win32.ActiveCfg = Release
+		{3C1F7CF6-D696-442C-ABA6-1E20EA3E0170}.Release|Win32.Build.0 = Release
+		{3C1F7CF6-D696-442C-ABA6-1E20EA3E0170}.Release|x64.ActiveCfg = Release
+		{3C1F7CF6-D696-442C-ABA6-1E20EA3E0170}.Release|x64.Build.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
