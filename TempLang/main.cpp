@@ -126,10 +126,12 @@ void installHook()
 
     run64Helper();
 
-    hookHandle = SetWindowsHookEx(WH_KEYBOARD_LL, keyboardHook, NULL, 0);
+    hookHandle = SetWindowsHookEx(WH_KEYBOARD_LL, keyboardHook, GetModuleHandle(NULL), 0);
     if(hookHandle == NULL) {
         DWORD err = GetLastError();
-        MessageBox(NULL, _T("Failed to register keyboard hook"), _T("Error"), MB_ICONERROR|MB_APPLMODAL);
+        TCHAR message[250];
+        _sntprintf_s(message, 250, _T("Failed to register keyboard hook: %d"), err);
+        MessageBox(NULL, message, _T("Error"), MB_ICONERROR|MB_APPLMODAL);
         exit(1);
     }
 }

@@ -49,9 +49,7 @@ Global
 		{3C1F7CF6-D696-442C-ABA6-1E20EA3E0170}.Debug|Mixed Platforms.ActiveCfg = Debug
 		{3C1F7CF6-D696-442C-ABA6-1E20EA3E0170}.Debug|Mixed Platforms.Build.0 = Debug
 		{3C1F7CF6-D696-442C-ABA6-1E20EA3E0170}.Debug|Win32.ActiveCfg = Debug
-		{3C1F7CF6-D696-442C-ABA6-1E20EA3E0170}.Debug|Win32.Build.0 = Debug
 		{3C1F7CF6-D696-442C-ABA6-1E20EA3E0170}.Debug|x64.ActiveCfg = Debug
-		{3C1F7CF6-D696-442C-ABA6-1E20EA3E0170}.Debug|x64.Build.0 = Debug
 		{3C1F7CF6-D696-442C-ABA6-1E20EA3E0170}.Release|Mixed Platforms.ActiveCfg = Release
 		{3C1F7CF6-D696-442C-ABA6-1E20EA3E0170}.Release|Mixed Platforms.Build.0 = Release
 		{3C1F7CF6-D696-442C-ABA6-1E20EA3E0170}.Release|Win32.ActiveCfg = Release
