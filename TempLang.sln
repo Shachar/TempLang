@@ -55,7 +55,6 @@ Global
 		{3C1F7CF6-D696-442C-ABA6-1E20EA3E0170}.Release|Win32.ActiveCfg = Release
 		{3C1F7CF6-D696-442C-ABA6-1E20EA3E0170}.Release|Win32.Build.0 = Release
 		{3C1F7CF6-D696-442C-ABA6-1E20EA3E0170}.Release|x64.ActiveCfg = Release
-		{3C1F7CF6-D696-442C-ABA6-1E20EA3E0170}.Release|x64.Build.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
