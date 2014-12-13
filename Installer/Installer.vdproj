@@ -45,32 +45,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_9AE6CA850AD54962A368CA0E30A17CFF"
-        "OwnerKey" = "8:_516EA6F9CAEF4871A761D08CFEF52C44"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_9AE6CA850AD54962A368CA0E30A17CFF"
-        "OwnerKey" = "8:_4A02E2BF434F4A9C9884C4F536D3ECA5"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_9AE6CA850AD54962A368CA0E30A17CFF"
-        "OwnerKey" = "8:_0F83EFEDF6974A2BB664E40E928CF936"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_E3FD5672027F42BE83C9270F16B7B721"
         "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_ED3262783DC07945F9046EA35A6070D1"
-        "OwnerKey" = "8:_4A02E2BF434F4A9C9884C4F536D3ECA5"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -210,26 +186,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_ED3262783DC07945F9046EA35A6070D1"
-            {
-            "SourcePath" = "8:Hook-Win32.dll"
-            "TargetName" = "8:Hook-Win32.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_FEC1271C76A14FA0BC4E8795BB4CFFD4"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
         }
         "FileType"
         {
@@ -286,15 +242,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:TempLang"
-        "ProductCode" = "8:{78DC5AEA-BB0C-47D8-AFAB-E2F94B5D99C0}"
-        "PackageCode" = "8:{7161AF58-E56A-40EA-A835-15C3B69006D3}"
+        "ProductCode" = "8:{BA2E7D1E-0B92-487B-A9E1-0DBFF31C86CE}"
+        "PackageCode" = "8:{20826AAF-8E6A-4CCF-843C-5C84C2CE87AB}"
         "UpgradeCode" = "8:{11337721-D02B-4432-8B65-BE16E5AECC7F}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.0.2"
+        "ProductVersion" = "8:1.0.3"
         "Manufacturer" = "8:Lingnu Open Source Consulting Ltd."
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -584,8 +540,8 @@
                             "Type" = "3:3"
                             "ContextData" = "8:"
                             "Attributes" = "3:0"
-                            "Setting" = "3:1"
-                            "Value" = "8:#1202"
+                            "Setting" = "3:2"
+                            "Value" = "8:This computer program is protected by copyright law and international treaties. This program is licensed to you under the GNU General Public License. You have rights."
                             "DefaultValue" = "8:#1202"
                             "UsePlugInResources" = "11:TRUE"
                             }
@@ -597,8 +553,8 @@
                             "Type" = "3:3"
                             "ContextData" = "8:"
                             "Attributes" = "3:0"
-                            "Setting" = "3:1"
-                            "Value" = "8:#1203"
+                            "Setting" = "3:2"
+                            "Value" = "8:The installer will guide you through the steps required to install [ProductName] version [ProductVersion] on your computer."
                             "DefaultValue" = "8:#1203"
                             "UsePlugInResources" = "11:TRUE"
                             }
@@ -698,8 +654,8 @@
                             "Type" = "3:3"
                             "ContextData" = "8:"
                             "Attributes" = "3:0"
-                            "Setting" = "3:1"
-                            "Value" = "8:#1203"
+                            "Setting" = "3:2"
+                            "Value" = "8:The installer will guide you through the steps required to install [ProductName] version [ProductVersion] on your computer."
                             "DefaultValue" = "8:#1203"
                             "UsePlugInResources" = "11:TRUE"
                             }
@@ -817,26 +773,12 @@
         }
         "MergeModule"
         {
-            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_9AE6CA850AD54962A368CA0E30A17CFF"
-            {
-            "UseDynamicProperties" = "11:TRUE"
-            "IsDependency" = "11:TRUE"
-            "SourcePath" = "8:microsoft_vc120_crt_x86.msm"
-                "Properties"
-                {
-                }
-            "LanguageId" = "3:0"
-            "Exclude" = "11:FALSE"
-            "Folder" = "8:"
-            "Feature" = "8:"
-            "IsolateTo" = "8:"
-            }
         }
         "ProjectOutput"
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_0F83EFEDF6974A2BB664E40E928CF936"
             {
-            "SourcePath" = "8:..\\Release\\Hook-x64.dll"
+            "SourcePath" = "8:"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_FEC1271C76A14FA0BC4E8795BB4CFFD4"
@@ -920,7 +862,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_E3FD5672027F42BE83C9270F16B7B721"
             {
-            "SourcePath" = "8:..\\Release\\TempLang Helper.exe"
+            "SourcePath" = "8:"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_FEC1271C76A14FA0BC4E8795BB4CFFD4"
