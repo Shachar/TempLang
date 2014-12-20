@@ -15,37 +15,43 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_0EA23409C7A04D4E8B77FE60EC0960EC"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_0F331CA2FE844438A2DD23826671CF8D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_0F83EFEDF6974A2BB664E40E928CF936"
+        "MsmKey" = "8:_432FA989D95A4622B06622F1094AF45C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_4A02E2BF434F4A9C9884C4F536D3ECA5"
+        "MsmKey" = "8:_4EF6FE6281B442EDBE877D7A5E4C4B31"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_516EA6F9CAEF4871A761D08CFEF52C44"
+        "MsmKey" = "8:_6B4887E48D3C4066A07F9B8518E6002F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_E3FD5672027F42BE83C9270F16B7B721"
+        "MsmKey" = "8:_6DE257B0351F45A29F9F9D59AF7D5C1B"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_94EE04E0D246441A83494F29A3691264"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E46F1A5B05484538B88E7CC6EF825D4F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -76,15 +82,15 @@
             "ComponentsUrl" = "8:"
                 "Items"
                 {
-                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Net.Framework.3.5"
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Visual.C++.12.0.x64"
                     {
-                    "Name" = "8:.NET Framework 3.5"
-                    "ProductCode" = "8:Microsoft.Net.Framework.3.5"
+                    "Name" = "8:Visual C++ 2013 Runtime Libraries (x64)"
+                    "ProductCode" = "8:Microsoft.Visual.C++.12.0.x64"
                     }
-                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Visual.C++.12.0.x86"
                     {
-                    "Name" = "8:Windows Installer 3.1"
-                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    "Name" = "8:Visual C++ 2013 Runtime Libraries (x86)"
+                    "ProductCode" = "8:Microsoft.Visual.C++.12.0.x86"
                     }
                 }
             }
@@ -113,15 +119,15 @@
             "ComponentsUrl" = "8:"
                 "Items"
                 {
-                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Net.Framework.3.5"
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Visual.C++.12.0.x64"
                     {
-                    "Name" = "8:.NET Framework 3.5"
-                    "ProductCode" = "8:Microsoft.Net.Framework.3.5"
+                    "Name" = "8:Visual C++ 2013 Runtime Libraries (x64)"
+                    "ProductCode" = "8:Microsoft.Visual.C++.12.0.x64"
                     }
-                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Visual.C++.12.0.x86"
                     {
-                    "Name" = "8:Windows Installer 3.1"
-                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    "Name" = "8:Visual C++ 2013 Runtime Libraries (x86)"
+                    "ProductCode" = "8:Microsoft.Visual.C++.12.0.x86"
                     }
                 }
             }
@@ -146,10 +152,10 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0EA23409C7A04D4E8B77FE60EC0960EC"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0F331CA2FE844438A2DD23826671CF8D"
             {
-            "SourcePath" = "8:..\\Copying.txt"
-            "TargetName" = "8:Copying.txt"
+            "SourcePath" = "8:..\\Authors.txt"
+            "TargetName" = "8:Authors.txt"
             "Tag" = "8:"
             "Folder" = "8:_FEC1271C76A14FA0BC4E8795BB4CFFD4"
             "Condition" = "8:"
@@ -166,10 +172,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0F331CA2FE844438A2DD23826671CF8D"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6B4887E48D3C4066A07F9B8518E6002F"
             {
-            "SourcePath" = "8:..\\Authors.txt"
-            "TargetName" = "8:Authors.txt"
+            "SourcePath" = "8:..\\Copying.txt"
+            "TargetName" = "8:Copying.txt"
             "Tag" = "8:"
             "Folder" = "8:_FEC1271C76A14FA0BC4E8795BB4CFFD4"
             "Condition" = "8:"
@@ -216,7 +222,7 @@
             }
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_FEC1271C76A14FA0BC4E8795BB4CFFD4"
             {
-            "DefaultLocation" = "8:[ProgramFilesFolder][Manufacturer]\\[ProductName]"
+            "DefaultLocation" = "8:[ProgramFilesFolder]\\[ProductName]"
             "Name" = "8:#1925"
             "AlwaysCreate" = "11:FALSE"
             "Condition" = "8:"
@@ -242,15 +248,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:TempLang"
-        "ProductCode" = "8:{BA2E7D1E-0B92-487B-A9E1-0DBFF31C86CE}"
-        "PackageCode" = "8:{20826AAF-8E6A-4CCF-843C-5C84C2CE87AB}"
+        "ProductCode" = "8:{5D8D6B35-6025-4002-A20D-9A1CFC9E8929}"
+        "PackageCode" = "8:{374BFA14-8CE9-4EB1-B3F9-968353B877E0}"
         "UpgradeCode" = "8:{11337721-D02B-4432-8B65-BE16E5AECC7F}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.0.3"
+        "ProductVersion" = "8:1.0.4"
         "Manufacturer" = "8:Lingnu Open Source Consulting Ltd."
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -264,7 +270,7 @@
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
-        "TargetPlatform" = "3:0"
+        "TargetPlatform" = "3:1"
         "PreBuildEvent" = "8:"
         "PostBuildEvent" = "8:"
         "RunPostBuildEvent" = "3:0"
@@ -363,20 +369,6 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_84899445A804402792390FE545E2EF6C"
-            {
-            "Name" = "8:TempLang"
-            "Arguments" = "8:"
-            "Description" = "8:Allows transient keyboard language switching"
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
-            "Transitive" = "11:FALSE"
-            "Target" = "8:_4A02E2BF434F4A9C9884C4F536D3ECA5"
-            "Folder" = "8:_49D35B0A6EBC40F48AE3F7D84038D7B2"
-            "WorkingFolder" = "8:_FEC1271C76A14FA0BC4E8795BB4CFFD4"
-            "Icon" = "8:"
-            "Feature" = "8:"
-            }
         }
         "UserInterface"
         {
@@ -773,12 +765,26 @@
         }
         "MergeModule"
         {
+            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_432FA989D95A4622B06622F1094AF45C"
+            {
+            "UseDynamicProperties" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
+            "SourcePath" = "8:C:\\Program Files (x86)\\Common Files\\Merge Modules\\Microsoft_VC120_CRT_x86.msm"
+                "Properties"
+                {
+                }
+            "LanguageId" = "3:0"
+            "Exclude" = "11:FALSE"
+            "Folder" = "8:"
+            "Feature" = "8:"
+            "IsolateTo" = "8:"
+            }
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_0F83EFEDF6974A2BB664E40E928CF936"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_4EF6FE6281B442EDBE877D7A5E4C4B31"
             {
-            "SourcePath" = "8:"
+            "SourcePath" = "8:..\\Release\\TempLang Helper.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_FEC1271C76A14FA0BC4E8795BB4CFFD4"
@@ -796,15 +802,15 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:Release|x64"
+            "OutputConfiguration" = "8:"
             "OutputGroupCanonicalName" = "8:Built"
-            "OutputProjectGuid" = "8:{F52B292F-4BF6-4004-AA60-1154C1449785}"
+            "OutputProjectGuid" = "8:{230578E8-5CF3-4F0D-9FFD-9DA8DD18C42E}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"
                 {
                 }
             }
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_4A02E2BF434F4A9C9884C4F536D3ECA5"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_6DE257B0351F45A29F9F9D59AF7D5C1B"
             {
             "SourcePath" = "8:..\\Release\\TempLang.exe"
             "TargetName" = "8:"
@@ -824,7 +830,7 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:Release|Win32"
+            "OutputConfiguration" = "8:"
             "OutputGroupCanonicalName" = "8:Built"
             "OutputProjectGuid" = "8:{791C2FEB-1C63-462D-8666-49F3F669092D}"
             "ShowKeyOutput" = "11:TRUE"
@@ -832,9 +838,9 @@
                 {
                 }
             }
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_516EA6F9CAEF4871A761D08CFEF52C44"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_94EE04E0D246441A83494F29A3691264"
             {
-            "SourcePath" = "8:..\\Release\\Hook-Win32.dll"
+            "SourcePath" = "8:..\\Release\\Hook-32.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_FEC1271C76A14FA0BC4E8795BB4CFFD4"
@@ -852,7 +858,7 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:Release|Win32"
+            "OutputConfiguration" = "8:"
             "OutputGroupCanonicalName" = "8:Built"
             "OutputProjectGuid" = "8:{F52B292F-4BF6-4004-AA60-1154C1449785}"
             "ShowKeyOutput" = "11:TRUE"
@@ -860,9 +866,9 @@
                 {
                 }
             }
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_E3FD5672027F42BE83C9270F16B7B721"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_E46F1A5B05484538B88E7CC6EF825D4F"
             {
-            "SourcePath" = "8:"
+            "SourcePath" = "8:..\\Release\\Hook-64.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_FEC1271C76A14FA0BC4E8795BB4CFFD4"
@@ -880,9 +886,9 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:Release|x64"
+            "OutputConfiguration" = "8:"
             "OutputGroupCanonicalName" = "8:Built"
-            "OutputProjectGuid" = "8:{791C2FEB-1C63-462D-8666-49F3F669092D}"
+            "OutputProjectGuid" = "8:{F043BB20-FDA5-49AE-9A4D-340E569D687A}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"
                 {
