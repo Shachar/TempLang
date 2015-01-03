@@ -25,7 +25,7 @@
 
 #define RUN_IDENTIFIER_ARG "Shachar Shemesh's TempLang: temporary keyboard switching"
 
-#ifndef _WIN64
+#ifdef TEMPLANG_MAIN_PROCESS
 INT_PTR CALLBACK DialogProc(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
     INT_PTR ret = TRUE;
@@ -104,8 +104,7 @@ void run64Helper()
     PROCESS_INFORMATION procInfo;
     if( !CreateProcess(path, _T(RUN_IDENTIFIER_ARG), NULL, NULL, false, 0, NULL,
         NULL, &startInfo, &procInfo)) {
-            DWORD error = GetLastError();
-            OutputDebugString(_T("Helper process creation failed\n"));
+            ODS(_T("Helper process creation failed: %d\n"), GetLastError());
     } else {
         // We don't wait for it
         CloseHandle(procInfo.hProcess);

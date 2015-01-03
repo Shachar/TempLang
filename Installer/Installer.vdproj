@@ -21,6 +21,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_319B05BAB203490D99149575E16F51AD"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_432FA989D95A4622B06622F1094AF45C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -46,12 +52,6 @@
         "Entry"
         {
         "MsmKey" = "8:_94EE04E0D246441A83494F29A3691264"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_E46F1A5B05484538B88E7CC6EF825D4F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -248,15 +248,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:TempLang"
-        "ProductCode" = "8:{5D8D6B35-6025-4002-A20D-9A1CFC9E8929}"
-        "PackageCode" = "8:{374BFA14-8CE9-4EB1-B3F9-968353B877E0}"
+        "ProductCode" = "8:{8EE4BB39-5B96-4A15-95C9-0C263BAC969B}"
+        "PackageCode" = "8:{AFA40131-33F2-44CD-BA93-3C5D79B4D3B0}"
         "UpgradeCode" = "8:{11337721-D02B-4432-8B65-BE16E5AECC7F}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.0.4"
+        "ProductVersion" = "8:1.0.5"
         "Manufacturer" = "8:Lingnu Open Source Consulting Ltd."
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -369,6 +369,20 @@
         }
         "Shortcut"
         {
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_511CB0A3529B4AD5B082615F9B6143F8"
+            {
+            "Name" = "8:TempLang"
+            "Arguments" = "8:"
+            "Description" = "8:Temporary Language Switch"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_6DE257B0351F45A29F9F9D59AF7D5C1B"
+            "Folder" = "8:_49D35B0A6EBC40F48AE3F7D84038D7B2"
+            "WorkingFolder" = "8:_FEC1271C76A14FA0BC4E8795BB4CFFD4"
+            "Icon" = "8:"
+            "Feature" = "8:"
+            }
         }
         "UserInterface"
         {
@@ -782,6 +796,34 @@
         }
         "ProjectOutput"
         {
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_319B05BAB203490D99149575E16F51AD"
+            {
+            "SourcePath" = "8:..\\Release\\Hook-2.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_FEC1271C76A14FA0BC4E8795BB4CFFD4"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:"
+            "OutputGroupCanonicalName" = "8:Built"
+            "OutputProjectGuid" = "8:{F043BB20-FDA5-49AE-9A4D-340E569D687A}"
+            "ShowKeyOutput" = "11:TRUE"
+                "ExcludeFilters"
+                {
+                }
+            }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_4EF6FE6281B442EDBE877D7A5E4C4B31"
             {
             "SourcePath" = "8:..\\Release\\TempLang Helper.exe"
@@ -840,7 +882,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_94EE04E0D246441A83494F29A3691264"
             {
-            "SourcePath" = "8:..\\Release\\Hook-32.dll"
+            "SourcePath" = "8:..\\Release\\Hook.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_FEC1271C76A14FA0BC4E8795BB4CFFD4"
@@ -861,34 +903,6 @@
             "OutputConfiguration" = "8:"
             "OutputGroupCanonicalName" = "8:Built"
             "OutputProjectGuid" = "8:{F52B292F-4BF6-4004-AA60-1154C1449785}"
-            "ShowKeyOutput" = "11:TRUE"
-                "ExcludeFilters"
-                {
-                }
-            }
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_E46F1A5B05484538B88E7CC6EF825D4F"
-            {
-            "SourcePath" = "8:..\\Release\\Hook-64.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_FEC1271C76A14FA0BC4E8795BB4CFFD4"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:"
-            "OutputGroupCanonicalName" = "8:Built"
-            "OutputProjectGuid" = "8:{F043BB20-FDA5-49AE-9A4D-340E569D687A}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"
                 {

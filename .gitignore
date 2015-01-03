@@ -5,4 +5,5 @@ Release
 *.vcxproj.*
 x64
 /TempLang.sdf
+/TempLang.opensdf
 /ipch

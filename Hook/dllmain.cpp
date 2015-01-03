@@ -153,7 +153,7 @@ LRESULT CALLBACK KeyboardProc( int code, WPARAM wParam, LPARAM lParam )
     return CallNextHookEx(sharedStruct->HOOKHANDLE, code, wParam, lParam);
 }
 
-#ifndef _WIN64
+#ifdef TEMPLANG_MAIN_PROCESS
 void switchMapping(DWORD threadId, HWND window, HKL keyboard)
 {
     sharedStruct->hLayout.handle = keyboard;

@@ -10,7 +10,7 @@
 #define HOOK_API __declspec(dllimport)
 #endif
 
-#ifndef _WIN64
+#ifdef TEMPLANG_MAIN_PROCESS
 HOOK_API void switchMapping( DWORD threadId, HWND hWindow, HKL mapping );
 
 HOOK_API void initSharedMem();
@@ -18,3 +18,5 @@ HOOK_API void hookShutdown();
 #else
 HOOK_API int waitLoop();
 #endif
+
+HOOK_API void ODS(const TCHAR *format, ...);
